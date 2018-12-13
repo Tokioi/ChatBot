@@ -300,6 +300,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
     <Compile Include="Controllers\TokenController.cs" />
+    <Compile Include="Dialogs\SearchContactDialog.cs" />
     <Compile Include="Dialogs\SearchOpportunityDialog.cs" />
     <Compile Include="Dynamics365BotModule.cs" />
     <Compile Include="Dialogs\DisplayViewDialog.cs" />
