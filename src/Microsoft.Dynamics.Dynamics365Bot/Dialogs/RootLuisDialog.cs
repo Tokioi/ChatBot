@@ -26,6 +26,7 @@
         internal const string ViewStatusKey = "ViewStatus";
         internal const string IncidentKey = "incident";
         internal const string OpportunityKey = "opportunity";
+        internal const string ContactKey = "contact";
         private readonly CrmClient crmClient = default;
         private readonly ICache<string, List<IEntity>> entityCache = default;
         private readonly IDialogFactory dialogFactory = default;
@@ -73,6 +74,11 @@
                 var query = luisResult.Entities.FirstOrDefault(e => e.Type.Equals("AccountName"))?.Entity;
                 context.Call(new SearchOpportunityDialog(this.crmClient, dialogFactory, accountName: query), this.ResumeVoid);
                 return;
+            }
+            else if (entityType.Equals(RootLuisDialog.ContactKey, System.StringComparison.OrdinalIgnoreCase))
+            {
+                var query = luisResult.Entities.FirstOrDefault(e => e.Type.Equals("AccountName"))?.Entity;
+                context.Call(new SearchContactDialog(this.crmCleint, dialogFactory, accountName: query), this.ResumeVoid);
             }
             await context.PostAsync("Sorry, I did not understand you.");
             context.Wait(MessageReceived);
