@@ -138,7 +138,12 @@
             {
                 context.Call(new SearchOpportunityDialog(this.crmClient, dialogFactory, accountName: name), this.ResumeVoid);
             }
+            else if (entityType.Equals(RootLuisDialog.ContactKey, System.StringComparison.OrdinalIgnoreCase))
+            {
+                context.Call(new SearchContactDialog(this.crmClient,dialogFactory, accountName: name), this.ResumeVoid);
+            }
             else
+        
             {
                 await context.PostAsync("Sorry, I did not understand you.");
                 context.Wait(MessageReceived);
